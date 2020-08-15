@@ -1,0 +1,39 @@
+@import "./colors.scss";
+
+.navbar {
+  padding: 25px;
+  background: $secondary;
+  // Navbar Menu Container
+  .navbar-menu {
+    .navbar-start {
+      .navbar-item {
+        .icon {
+          margin-right: 5px;
+          margin-top: -5px;
+        }
+      }
+    }
+    // Navbar Menu End Section
+    .navbar-end {
+      .navbar-item {
+        .buttons {
+          .button.is-primary {
+            color: $secondary;
+          }
+        }
+      }
+    }
+  }
+}
+a.router-link-exact-active {
+  color: $primary;
+}
+a.navbar-item {
+  &:hover {
+    color: $primary;
+    background: $secondary;
+  }
+  &:focus-within {
+    background: $secondary;
+  }
+}

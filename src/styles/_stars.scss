@@ -1,0 +1,81 @@
+// Buefy override
+.button:focus:not(:active),
+.button.is-focused:not(:active) {
+  box-shadow: none !important;
+}
+// Centers Review Title
+.form .block > .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+//Block Contains Review Stars
+.block {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+  // Wraps Stars
+  .starContainer {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+    margin-left: 0.75rem;
+
+    // Individual Star Rules
+    .star {
+      transition: all 0.25s ease-in-out;
+      transition-delay: 0.1s;
+      margin-left: 3px;
+      &:hover {
+        color: $gold;
+        transition-delay: 0.1s;
+        box-shadow: 1px #333;
+        // Selects all descendant stars
+        ~ .star {
+          cursor: pointer;
+          color: $gold;
+        }
+      }
+      // Resizes Input Container
+      .control.check {
+        position: absolute;
+        // Gives Label Size
+        label {
+          height: 50px;
+          width: 50px;
+          background: transparent;
+          border: 2px solid $dark;
+          border-right: none;
+          border-left: none;
+          &:nth-last-child(1) {
+            border: 2px solid $dark;
+          }
+        }
+      }
+    }
+    // Selected Star
+    .star.selected {
+      color: $gold;
+      box-shadow: inset 1px 1px 20px 20px $shadow;
+      border-radius: 5px;
+      // Selects all descendant stars
+      ~ .star {
+        color: $gold;
+        border-radius: 5px;
+        box-shadow: inset 1px 1px 20px 20px $shadow;
+        .control.check {
+          label {
+            border-color: $gold;
+          }
+        }
+      }
+      .control.check {
+        label {
+          border-color: $gold;
+        }
+      }
+    }
+  }
+}

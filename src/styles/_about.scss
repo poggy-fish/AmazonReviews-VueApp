@@ -1,0 +1,29 @@
+@import "./_colors.scss";
+
+.about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  margin-top: 100px;
+  p {
+    margin: 10px;
+  }
+  a {
+    width: 150px;
+    color: white;
+    background: $primary;
+    border-radius: 5px;
+    font-size: 1.25rem;
+    height: 40px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    &:hover {
+      color: white;
+    }
+  }
+}

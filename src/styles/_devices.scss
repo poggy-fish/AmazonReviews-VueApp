@@ -1,0 +1,41 @@
+@import "./colors";
+
+// Overrides Bulma
+.carousel-list.carousel {
+  box-shadow: none;
+}
+.carousel-arrow .icon {
+  color: $primary !important;
+  &:hover {
+    border-color: $primary !important;
+  }
+}
+// Device Card
+.card {
+  display: flex;
+  justify-content: center;
+  min-height: 325px;
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
+  .card-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .card-content {
+    display: flex;
+    .content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      .subtitle {
+        margin-top: -0.75rem;
+      }
+      .timestamp {
+        font-weight: bold;
+      }
+    }
+  }
+}

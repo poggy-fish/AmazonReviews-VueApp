@@ -1,0 +1,36 @@
+// Local Imports
+
+@import "./home";
+@import "./navigation";
+@import "./colors";
+@import "./stars";
+@import "./devices";
+@import "./about";
+@import "./footer";
+
+a {
+  color: $primary;
+  &:hover {
+    color: $primary;
+  }
+}
+a.button {
+  color: $secondary;
+  background: $primary;
+  border-color: $primary;
+}
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+#nav a {
+  font-weight: bold;
+}
+
+#nav a.router-link-exact-active {
+  color: $primary;
+}

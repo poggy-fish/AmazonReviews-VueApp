@@ -1,0 +1,52 @@
+@import "./colors";
+
+// Home Container
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 100px 0px;
+  padding: 2.5%;
+  // Titles
+  .title {
+    margin-top: 5%;
+  }
+  // Form
+  .form {
+    .help {
+      text-align: left;
+    }
+    button {
+      margin-top: 2.5rem;
+
+      color: $secondary;
+      background: $primary;
+      border-color: $primary;
+    }
+  }
+  // Sections
+  section {
+    max-width: 700px;
+    width: 100%;
+    // Align all field labels left
+    .field > label {
+      text-align: left;
+    }
+  }
+}
+
+// Override Bulma & Buefy Defaults
+.select {
+  &:after {
+    border-color: $primary !important;
+  }
+}
+input,
+textarea,
+select {
+  &:focus {
+    border-color: $primary !important;
+    box-shadow: none !important;
+  }
+}

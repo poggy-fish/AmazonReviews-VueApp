@@ -3,7 +3,7 @@
     <h2 class="title is-2">Submit Amazon Alexa Review</h2>
     <ReviewForm v-on:submit-review="submit" />
     <h2 class="title is-6 has-text-center">Recent Reviews:</h2>
-    <Devices :reviews="reviews" v-if="reviews.length > 0" />
+    <Devices v-bind:reviews="reviews" v-if="reviews.length > 0" />
   </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
     Devices,
   },
   methods: {
-    submit: function(formData) {
+    submit: function (formData) {
       this.$emit("submit-review", formData);
     },
   },

@@ -4,6 +4,11 @@
 - Styled with SCSS and Buefy + Bulma
 - Deployed with Firebase Hosting: https://reviewapp-a76f1.web.app/
 
+## Part 2: Data Analysis
+
+- Part 2 of the challenge can be found here:
+  https://www.kaggle.com/alexisdavalos/dose-part-2-code-challenge-amazon-alexa-data
+
 ## Environment Variables
 
 ```

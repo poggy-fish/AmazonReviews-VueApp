@@ -1,37 +1,34 @@
 <template>
   <b-carousel-list
     class="carousel"
-    :data="reviewItems"
-    :items-to-show="3"
-    :images="images"
+    v-bind:data="reviewItems"
+    v-bind:items-to-show="3"
+    v-bind:images="images"
     v-if="reviewItems.length > 0"
   >
     <template slot="item" slot-scope="props" class="carousel-slide">
       <div class="card">
         <div class="card-image">
           <figure class="image is-128x128">
-            <a @click="info(props.index)">
-              <img :src="images[props.list.deviceVariant]" />
+            <a v-on:click="info(props.index)">
+              <img v-bind:src="images[props.list.deviceVariant]" />
             </a>
           </figure>
         </div>
         <div class="card-content">
           <div class="content">
-            <p class="title is-7">
-              Device: {{ props.list.deviceVariant }} Alexa
-            </p>
+            <p class="title is-7">Device: {{ props.list.deviceVariant }} Alexa</p>
             <p class="subtitle is-size-7">Customer: {{ props.list.name }}</p>
             <div class="field is-grouped">
               <p class="control" v-if="props.list.rating">
-                <b-rate :value="props.list.rating" show-score disabled />
+                <b-rate v-bind:value="props.list.rating" show-score disabled />
               </p>
             </div>
             <p class="has-text-center is-size-7">
-              <b>Review:</b> {{ props.list.message }}
+              <b>Review:</b>
+              {{ props.list.message }}
             </p>
-            <p class="timestamp is-size-7 has-text-center">
-              Timestamp: {{ props.list.timestamp }}
-            </p>
+            <p class="timestamp is-size-7 has-text-center">Timestamp: {{ props.list.timestamp }}</p>
           </div>
         </div>
       </div>

@@ -1,20 +1,17 @@
 <template>
-  <b-navbar :fixed-top="true">
+  <b-navbar v-bind:fixed-top="true">
     <template slot="brand">
-      <b-navbar-item tag="router-link" :to="{ path: '/' }">
-        <img
-          v-bind:src="image"
-          alt="Lightweight UI components for Vue.js based on Bulma"
-        />
+      <b-navbar-item tag="router-link" v-bind:to="{ path: '/' }">
+        <img v-bind:src="image" alt="Lightweight UI components for Vue.js based on Bulma" />
       </b-navbar-item>
     </template>
     <template class="is-primary" slot="start">
-      <router-link class="navbar-item" to="/"
-        ><b-icon icon="home" /> Home</router-link
-      >
-      <router-link class="navbar-item" to="/about"
-        ><b-icon icon="help" />About</router-link
-      >
+      <router-link class="navbar-item" to="/">
+        <b-icon icon="home" />Home
+      </router-link>
+      <router-link class="navbar-item" to="/about">
+        <b-icon icon="help" />About
+      </router-link>
     </template>
 
     <template slot="end">

@@ -4,12 +4,12 @@
     <b-field
       label="Name"
       name="name"
-      :type="formErrors.name ? 'is-danger' : ''"
-      :message="formErrors.name ? 'Name Cannot Be Empty' : ''"
+      v-bind:type="formErrors.name ? 'is-danger' : ''"
+      v-bind:message="formErrors.name ? 'Name Cannot Be Empty' : ''"
     >
       <b-input
         v-model="formData.name"
-        @input="(e)=> handleInput(e, 'name')"
+        v-on:input="(e)=> handleInput(e, 'name')"
         placeholder="Enter your name..."
       ></b-input>
     </b-field>
@@ -17,33 +17,33 @@
     <!-- Select Device Field -->
     <b-field
       label="Select Device"
-      :type="formErrors.deviceVariant ? 'is-danger' : ''"
-      :message="
+      v-bind:type="formErrors.deviceVariant ? 'is-danger' : ''"
+      v-bind:message="
         formErrors.deviceVariant ? 'Device Variant Cannot Be Empty' : ''
       "
     >
       <b-select
         v-model="formData.deviceVariant"
-        @input="(e)=> handleInput(e, 'deviceVariant')"
+        v-on:input="(e)=> handleInput(e, 'deviceVariant')"
         expanded
       >
         <option disabled value>Select Device Variant</option>
-        <option v-for="device in options" v-bind:key="device" :value="device">{{ device }}</option>
+        <option v-for="device in options" v-bind:key="device" v-bind:value="device">{{ device }}</option>
       </b-select>
     </b-field>
 
     <!-- Review Message Field -->
     <b-field
       label="Review"
-      :type="formErrors.message ? 'is-danger' : ''"
-      :message="formErrors.message ? 'Review Message Cannot Be Empty' : ''"
+      v-bind:type="formErrors.message ? 'is-danger' : ''"
+      v-bind:message="formErrors.message ? 'Review Message Cannot Be Empty' : ''"
     >
       <b-input
         v-model="formData.message"
         maxlength="500"
         type="textarea"
         placeholder="Write Review..."
-        @input="(e)=> handleInput(e, 'message')"
+        v-on:input="(e)=> handleInput(e, 'message')"
       ></b-input>
     </b-field>
 
@@ -53,7 +53,7 @@
       <div class="starContainer">
         <div
           class="star"
-          :id="`star_${star}`"
+          v-bind:id="`star_${star}`"
           v-on:click="rate"
           v-for="star in stars"
           v-bind:key="star"
@@ -61,11 +61,11 @@
           <b-radio-button
             class="check"
             type="radio"
-            :native-value="star"
+            v-bind:native-value="star"
             v-model="formData.rating"
-            @input="(e)=> handleInput(e, 'rating')"
+            v-on:input="(e)=> handleInput(e, 'rating')"
           />
-          <label :for="star">
+          <label v-bind:for="star">
             <b-icon icon="star" size="is-large"></b-icon>
           </label>
         </div>
@@ -78,6 +78,10 @@
 </template>
 
 <script>
+import Firebase from "firebase/app";
+let db = Firebase.database();
+let deviceVariants = db.ref("deviceVariants");
+
 export default {
   data() {
     return {
@@ -94,17 +98,20 @@ export default {
         message: false,
         rating: false,
       },
-      options: [
-        "Charcoal Fabric",
-        "Sandstone Fabric",
-        "Black",
-        "White",
-        "Walnut Finish",
-        "Heather Gray Fabric",
-        "Oak Finish",
-      ],
+      options: [],
       validCount: 0,
     };
+  },
+  mounted() {
+    // Fetch New Options from Firebase
+    this.options.length = 0;
+
+    deviceVariants.on("value", (variants) => {
+      this.options = variants.val();
+    });
+  },
+  beforeDestroy() {
+    deviceVariants.off();
   },
   methods: {
     // Method to submit form
@@ -130,7 +137,7 @@ export default {
       }
 
       // Check that all fields have been validated
-      if (this.validCount === 4) {
+      if (this.validCount === Object.keys(this.formData).length) {
         // Send form data up to parent component
         this.$emit("submit-review", this.formData);
 
